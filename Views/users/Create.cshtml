@@ -1,0 +1,63 @@
+﻿@model TRY.Models.user
+ 
+@{
+       Layout = null;
+}
+@* 
+<form asp-action="Edit">
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<label asp-for="Name" class="control-label"></label>
+<input id="Name" asp-for="Name" class="form-control" required/>
+<span asp-validation-for="Name" class="text-danger"></span>
+            
+<input type="hidden" asp-for="id" />
+<div class="form-group">
+<label asp-for="Address" class="control-label"></label>
+<input asp-for="Address" class="form-control" />
+<span asp-validation-for="Address" class="text-danger"></span> *@
+
+
+<label  class="control-label"> Full Name </label>
+<input id="name2" asp-for="Name"  class="form-control" required/>
+<label  class="control-label" >Quantity</label>
+<input  class="form-control" id="qty" required onkeyup="Calculate()" />
+
+<label  class="control-label" > Unit Price </label>
+<input  class="form-control" id="up" required onkeyup="Calculate()"  />
+<label  class="control-label">Total Price</label>
+<input  class="form-control"  id="total" required/>
+
+<label  class="control-label">ID</label>
+<input  class="form-control"  id="number" onkeyup="sql()" />
+
+
+<script>
+          
+function Calculate(){
+
+       var num=parseInt(qty.value);
+        var num1=parseInt(up.value);
+        
+        total.value = num*num1; 
+
+} 
+
+function sql(){
+       let ok = number.value
+     
+      $.ajax({
+          url: "/Users/sql/"+ ok,
+          type: "GET",
+          dataType:"json",
+          success: function(users) {
+           
+             console.log(users);
+             name2.value=users.value.Name;
+ 
+          }
+       });
+
+} 
+
+</script>
+

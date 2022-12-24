@@ -1,0 +1,42 @@
+﻿
+@model TRY.Models.user
+<br><br>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label"> First Name</label>
+                <input id="fname" class="form-control" required onkeyup="textchange()"/>
+                <label  class="control-label">Last Name</label>
+                <input id="lname" class="form-control" required onkeyup="textchange()"/>
+                
+                <label asp-for="Name" class="control-label"></label>
+                <input id="Name" asp-for="Name" class="form-control" required/>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="id" />
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" required/>
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div> 
+                
+                <label class="control-label">Combo  box</label>
+                <br>
+                <select asp-for="id" asp-items='@(new SelectList(ViewBag.message,"id","Name"))'></select>  </div>
+            <br>
+            <br>
+            <div class="form-group">
+                <input class="btn btn-primary" type="reset" value="Reset">    
+                <input type="submit" value="Save" id="edit-save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+ 
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
